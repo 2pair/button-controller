@@ -97,11 +97,6 @@ class Button:
         self.actions[int(time_length)] = command
         return 0
     
-    #checks to see that one of the args points to a script
-    # prodably cant actually do this
-    def checkFile(self, command):
-        pass
-        
     # hangs out and waits for the button to be pressed
     # figures out how long the button was pressed for,
     # then runs the script associated with that length of time
@@ -122,16 +117,16 @@ class Button:
             else:    
                 # button has been pressed
                 if count > 0:
-                    self.doAction(self.findAction(math.floor(count)))
-                else:
-                    pass
+                    action = self.findAction(math.floor(count))
+                    if action in self.actions:
+                        self.doAction()
                 count = 0
             time.sleep(sleep_time)
     
     # search for the nearest lower-valued action
     def findAction(self, time_length):
-        # assume minimum length as our guess
-        candidate = self.min_hold
+        # assume a bad value
+        candidate = -1
         for i in list(self.actions.keys()):
             if i <= time_length and i > candidate:
                 candidate = i
@@ -140,7 +135,7 @@ class Button:
     # do the action from the action dictionary
     def doAction(self, key):
         args = shlex.split(self.actions[key])
-        p = subprocess.Popen(args)
+        subprocess.Popen(args)
     
     # clean up function to run when done
     def cleanup(self):
