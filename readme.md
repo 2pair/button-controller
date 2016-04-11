@@ -9,10 +9,10 @@ Place the following files in a directory of your choice:
 Button.py
 hwbuttond.py
 config.txt
-hwbuttond-start.sh
-hwbuttond-stop.sh
 
-edit hwbuttond.py and hwbutton.service to point to your directory as necessary.
+install py-setproctitle using the instructions `here <https://github.com/dvarrazzo/py-setproctitle>`__
+
+edit hwbutton.service to point to your directory as necessary.
 put hwbutton.service in /usr/lib/systemd/system (assuming you're running systemd).
 run "systemctl enable hwbuttond.service" then check that its working by running "systemctl status hwbuttond.service".
 
