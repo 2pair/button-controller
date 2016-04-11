@@ -26,6 +26,8 @@ Edit the config file to do whatever actions you want. the format of the file is 
 - do not leave any blank lines.
 - do not repeat a time.
 
+After editing the config file you will either need to reload the service or restart the system.
+
 ## License
 
 GPL v3 http://www.gnu.org/licenses/gpl-3.0.en.html
