@@ -35,20 +35,20 @@ elif args.action.lower()=='stop':
 else:
     print("Invalid value to argument \'-a/--action\'. Valid values are start/stop")
     parser.print_usage()
-    sys.exit(0)    
+    sys.exit(1)    
 
 #make sure we have a valid config file when starting the service
 if args.action=='start' or args.action==None:
     if args.config_file==None:
         print("When starting the service a config file must be specified.")
         parser.print_usage()
-        sys.exit(0)
+        sys.exit(1)
     elif os.path.isfile(args.config_file):
         pass
     else:
         print("Specified config file was not found.")
         parser.print_usage()
-        sys.exit(0)
+        sys.exit(1)
 
 # make a new button listener
 if args.action=='start' or args.action==None:
