@@ -1,4 +1,4 @@
-# button-interface
+# button-controller
 
 This is a small project to control a button on the raspberry pi. It allows for multiple actions to be defined for a button based on the length of time the button is held. The program will round the hold time down to the nearest whole second and then perform whichever action in the config file is closest without going over.
 
