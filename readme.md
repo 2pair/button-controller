@@ -10,21 +10,22 @@ Button.py
 hwbuttond.py
 config.txt
 
-install py-setproctitle using the instructions here <https://github.com/dvarrazzo/py-setproctitle>
+install py-setproctitle using the instructions here <https://github.com/dvarrazzo/py-setproctitle>.
 
 edit hwbutton.service to point to your directory as necessary.
 put hwbutton.service in /usr/lib/systemd/system (assuming you're running systemd).
-run "systemctl enable hwbuttond.service" then check that its working by running "systemctl status hwbuttond.service".
+run "systemctl enable hwbuttond.service" then check that its working by running "systemctl status hwbuttond.service". If you desire to start the service at this time run "systemctl start hwbuttond.service".
 
 ## Usage
 
 Edit the config file to do whatever actions you want. the format of the file is as follows:
-- one action per line.
-- time in seconds for the button to be held followed by a colon(:) followed by the action.
-- white space is allowed.
-- an action is defined as anything you can do on the command line.
-- do not leave any blank lines.
-- do not repeat a time.
+- One action per line.
+- Time in seconds for the button to be held followed by a colon(:) followed by the action.
+- A time of zero indicates a quick press.
+- White space is allowed.
+- An action is defined as anything you can do on the command line.
+- Do not leave any blank lines.
+- Do not repeat a time.
 
 After editing the config file you will either need to reload the service or restart the system.
 
