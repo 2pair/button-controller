@@ -4,8 +4,8 @@ Documentation=https://github.com/2pair/button-controller/
 
 [Service]
 Type=simple
-ExecStart=/opt/button-interface/hwbuttond-start.sh
-ExecStop=/opt/button-interface/hwbuttond-stop.sh
+ExecStart=/opt/button-interface/hwbuttond.py -p 26 -f /opt/button-interface/config.txt -a start
+ExecStop=/opt/button-interface/hwbuttond.py -p 26 -a stop
 
 [Install]
 WantedBy=multi-user.target
