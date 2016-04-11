@@ -1,12 +1,10 @@
 #!/usr/bin/python
 
 import RPi.GPIO as GPIO
-import atexit, time, threading, sys, re, os.path, subprocess, shlex, math
+import atexit, time, sys, re, os.path, subprocess, shlex, math
 
 # A button listener that does different actions based on whats in its config file
 class Button:
-    # thread kill variable
-    terminated = None
     # dictionary of actions.
     # key = button hold time, value = script to run
     actions = {}
@@ -24,19 +22,11 @@ class Button:
         self.pin = pin
         
         #set up this button's actions
-        self.config(config_file)
-                
+        self.config(config_file)   
         # setup the gpio pin
         self.setupGpio(self.pin)
-        
-        # setup our thread kill on exit
-        self.terminated = threading.Event()
-        self.terminated.clear()
+        # register the cleanup function
         atexit.register(self.cleanup)
-
-        # create a new button listener for this button
-        t = threading.Thread(None,self.buttonListener,"buttonListenerd",args=())
-        t.start()
     
     # configure this button by reading in a config file
     # then set our min and max hold times
@@ -154,7 +144,6 @@ class Button:
     
     # clean up function to run when done
     def cleanup(self):
-        self.terminated.set()
         GPIO.cleanup()
         return 0
         
