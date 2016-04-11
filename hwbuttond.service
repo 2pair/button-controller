@@ -1,6 +1,6 @@
 [Unit]
 Description=hardware button monitor and action doer
-Documentation=https://github.com/ohfuckidonthavedocumentationyet
+Documentation=https://github.com/2pair/button-controller/
 
 [Service]
 Type=simple
