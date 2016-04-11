@@ -1,0 +1,11 @@
+[Unit]
+Description=hardware button monitor and action doer
+Documentation=https://github.com/ohfuckidonthavedocumentationyet
+
+[Service]
+Type=simple
+ExecStart=/opt/button-interface/hwbuttond-start.sh
+ExecStop=/opt/button-interface/hwbuttond-stop.sh
+
+[Install]
+WantedBy=multi-user.target
