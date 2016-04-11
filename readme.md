@@ -10,7 +10,7 @@ Button.py
 hwbuttond.py
 config.txt
 
-install py-setproctitle using the instructions `here <https://github.com/dvarrazzo/py-setproctitle>`__
+install py-setproctitle using the instructions here <https://github.com/dvarrazzo/py-setproctitle>
 
 edit hwbutton.service to point to your directory as necessary.
 put hwbutton.service in /usr/lib/systemd/system (assuming you're running systemd).
