@@ -4,6 +4,7 @@ This is a small project to control a button on the raspberry pi.
 
 ## Installation
 
+I'm assuming this is being used on a linux system.
 Place the following files in a directory of your choice:
 Button.py
 hwbuttond.py
@@ -18,12 +19,12 @@ run "systemctl enable hwbuttond.service" then check that its working by running 
 ## Usage
 
 Edit the config file to do whatever actions you want. the format of the file is as follows:
-one action per line.
-time in seconds for the button to be held followed by a colon(:) followed by the action.
-white space is allowed.
-an action is defined as anything you can do on the command line.
-do not leave any blank lines.
-do not repeat a time.
+- one action per line.
+- time in seconds for the button to be held followed by a colon(:) followed by the action.
+- white space is allowed.
+- an action is defined as anything you can do on the command line.
+- do not leave any blank lines.
+- do not repeat a time.
 
 ## License
 
