@@ -13,7 +13,7 @@ class Button:
     # the minimum time we will respond to
     min_hold = None
     # To initialize the Button, define what BMC pin it operates on and point to the config file
-    #config file format: 
+    # config file format: 
     # each line has a length of time to hold the button in integer seconds, followed by a colon and then a script to execute
     # example:          2: python /usr/bin/myscript -OpTioNs "arg1" "arg2"
     # if there is no 0 value a short press will do nothing.
@@ -77,7 +77,7 @@ class Button:
     def processLine(self, line, line_number):
         m = re.match(r"^([0-9]+)[ \t]*:[ \t]*(.+)", line)
         if m:
-            time_length = m.group(1)
+            time_length = int(m.group(1))
             command = m.group(2)
         # regex didn't match
         else:
@@ -94,7 +94,7 @@ class Button:
         #else:
         #    raise FileNotFound(command, line_number)
         # add to the dictionary
-        self.actions[int(time_length)] = command
+        self.actions[time_length] = command
         return 0
     
     # hangs out and waits for the button to be pressed
@@ -108,9 +108,8 @@ class Button:
         while True:
             # button pressed
             if GPIO.input(self.pin):
-                # add number of milliseconds
                 count += sleep_time
-                #see if we really need to keep monitoring
+                # see if we really need to keep monitoring
                 if count > self.max_hold:
                     self.doAction(self.max_hold)
             # button released
@@ -118,6 +117,7 @@ class Button:
                 # button has been pressed
                 if count > 0:
                     action = self.findAction(math.floor(count))
+                    # make sure the return value is valid
                     if action in self.actions:
                         self.doAction()
                 count = 0
@@ -130,7 +130,10 @@ class Button:
         for i in list(self.actions.keys()):
             if i <= time_length and i > candidate:
                 candidate = i
-        return candidate
+        if candidate != -1:
+            return candidate
+        else:
+            return None
     
     # do the action from the action dictionary
     def doAction(self, key):
